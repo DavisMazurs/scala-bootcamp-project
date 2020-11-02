@@ -1,0 +1,3 @@
+# M2 CMS Prototype Project
+
+### So it begins...
