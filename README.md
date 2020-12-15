@@ -1,3 +1,1 @@
-# M2 CMS Prototype Project
-
-### So it begins...
+# Scala bootcamp course project
