@@ -1,6 +1,6 @@
 scalaVersion := "2.13.1"
 
-name := "m2-cms"
+name := "scala-bootcamp-project"
 organization := "ch.epfl.scala"
 version := "1.0"
 
@@ -27,6 +27,10 @@ libraryDependencies ++= Seq(
   // Akka http
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "de.heikoseeberger" %% "akka-http-circe" % akkaHttpJsonSerializersVersion,
+
+  "org.slf4j" % "slf4j-api" % "1.7.1",
+  "org.slf4j" % "log4j-over-slf4j" % "1.7.1",  // for any java classes looking for this
+  "ch.qos.logback" % "logback-classic" % "1.0.3",
 
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
 )
