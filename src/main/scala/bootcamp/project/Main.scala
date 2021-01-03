@@ -1,7 +1,9 @@
 package bootcamp.project
 
+import bootcamp.project.user
 import pureconfig.ConfigSource
 import pureconfig.generic.auto._
+
 
 object Main {
 
