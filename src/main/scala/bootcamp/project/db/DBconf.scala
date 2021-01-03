@@ -14,24 +14,16 @@ import monix.execution.Scheduler.Implicits.global
 
 import scala.concurrent.ExecutionContext
 
-object DoobieDBConfig {
-
-
-  val testSql: ConnectionIO[Unit] =
-    sql"insert into users (username, password, email) values ('admin', 'admin', 'admin@m2.net')".stripMargin.update.run.void
-
-
-
-
+class DBconf(config: Config) {
   val transactor: Resource[Task, Transactor[Task]] = {
     for {
-      ce <- ExecutionContexts.fixedThreadPool[Task](32)
+      ce <- ExecutionContexts.fixedThreadPool[Task](config.db.threadPoolSize)
       be <- ExecutionContexts.cachedThreadPool[Task]
       xa <- HikariTransactor.newHikariTransactor[Task](
-        "org.postgresql.Driver",
-        "jdbc:postgresql://192.168.99.100:5432/course-project",
-        "postgres",
-        "000000",
+        config.db.driver,
+        config.db.url,
+        config.db.username,
+        config.db.password,
         ce,
         Blocker.liftExecutionContext(be)
       )
@@ -39,21 +31,8 @@ object DoobieDBConfig {
     } yield xa
   }
 
-
-
-
   private def testConnection(xa: Transactor[Task]): Task[Unit] =
     Task {
       sql"select 1".query[Int].unique.transact(xa)
     }.void
-
-
-//  private def connectTest(xa: Transactor[Task]): Task[Unit] = {
-//
-//  }
-
-  def main(args: Array[String]): Unit = {
-//    testSql.transact(mxa).runAsyncAndForget
-    transactor.use(testSql.transact[Task]).runSyncUnsafe()
-  }
 }

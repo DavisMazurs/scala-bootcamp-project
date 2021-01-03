@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <jmxConfigurator/>
+
+    <logger name="com.zaxxer.hikari" level="${LOG_LEVEL:-DEBUG}" additivity="false" />
+
+</configuration>

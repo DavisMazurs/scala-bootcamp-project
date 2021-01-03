@@ -32,7 +32,12 @@ libraryDependencies ++= Seq(
   // Logs
   "org.slf4j" % "slf4j-api" % "1.7.1",
   "org.slf4j" % "log4j-over-slf4j" % "1.7.1",  // for any java classes looking for this
-  "ch.qos.logback" % "logback-classic" % "1.0.3",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
+  "org.codehaus.janino" % "janino" % "3.1.2",
+  "de.siegmar" % "logback-gelf" % "3.0.0",
+  
+  // Config
+  "com.github.pureconfig" %% "pureconfig" % "0.14.0",
 
   // DB
   "org.tpolecat"          %% "doobie-core"            % doobieVersion,
